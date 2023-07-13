@@ -70,5 +70,7 @@ require("lazy").setup({
       },
     },
   },
-
+  {
+    'mhartington/formatter.nvim'
+  }
 })

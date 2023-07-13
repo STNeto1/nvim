@@ -27,11 +27,9 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 -- Remove Q mapping
 vim.keymap.set("n", "Q", "<nop>")
 
--- Format with f
-vim.keymap.set("n", "g", function()
-  vim.lsp.buf.format()
-end)
-
+-- Format
+-- vim.keymap.set("n", "g", ":Format<CR>")
+vim.keymap.set("n", "g", ":FormatWrite<CR>")
 
 
 -- [[ Highlight on yank ]]
