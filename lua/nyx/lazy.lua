@@ -22,5 +22,9 @@ require("lazy").setup({
   {
     'rose-pine/neovim',
     name = 'rose-pine',
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate'
   }
 })
