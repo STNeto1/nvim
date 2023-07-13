@@ -28,6 +28,6 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Format with f
-vim.keymap.set("n", "f", function()
+vim.keymap.set("n", "g", function()
   vim.lsp.buf.format()
 end)
