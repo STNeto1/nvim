@@ -10,7 +10,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 cmp.setup({
 	sources = {
-		{ name = "copilot" },
+		-- { name = "copilot" },
 		{ name = "nvim_lsp" },
 	},
 	mapping = {
@@ -51,6 +51,8 @@ lsp.on_attach(function(_, bufnr)
 	nmap("<leader><F2>", vim.lsp.buf.rename, "Rename")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
+	nmap("<leader>vd", vim.diagnostic.open_float, "Open Diagnostics")
+
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("K", vim.lsp.buf.hover, "Hover")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -67,6 +69,18 @@ lsp.ensure_installed({
 	"lua_ls",
 	"rust_analyzer",
 	"gopls",
+})
+
+-- ufo related
+lsp.set_server_config({
+	capabilities = {
+		textDocument = {
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
+		},
+	},
 })
 
 lsp.setup()

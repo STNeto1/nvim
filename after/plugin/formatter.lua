@@ -34,9 +34,9 @@ require("formatter").setup({
 })
 
 -- Automatically run :FormatWrite whenever a buffer is written
--- vim.api.nvim_exec([[
--- augroup FormatAutogroup
--- autocmd!
--- autocmd BufWritePost *.astro,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql FormatWrite
--- augroup END
--- ]], true)
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+autocmd!
+autocmd BufWritePost *.lua,*.go,*.rs,*.astro,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql FormatWrite
+augroup END
+]], true)

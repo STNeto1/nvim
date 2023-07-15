@@ -74,6 +74,8 @@ require("lazy").setup({
 	},
 	{
 		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
 	},
 	{
 		"zbirenbaum/copilot-cmp",
@@ -97,5 +99,11 @@ require("lazy").setup({
 			-- …etc.
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			{ "kevinhwang91/promise-async" },
+		},
 	},
 })
