@@ -106,4 +106,11 @@ require("lazy").setup({
 			{ "kevinhwang91/promise-async" },
 		},
 	},
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+		},
+	},
 })

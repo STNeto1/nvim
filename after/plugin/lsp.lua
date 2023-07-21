@@ -49,7 +49,7 @@ lsp.on_attach(function(_, bufnr)
 	end
 
 	nmap("<leader><F2>", vim.lsp.buf.rename, "Rename")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+	-- nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
 	nmap("<leader>vd", vim.diagnostic.open_float, "Open Diagnostics")
 
@@ -82,5 +82,7 @@ lsp.set_server_config({
 		},
 	},
 })
+
+lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()
