@@ -1,4 +1,3 @@
-
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
 	-- Enable or disable logging
@@ -22,6 +21,9 @@ require("formatter").setup({
 		rust = {
 			require("formatter.filetypes.rust").rustfmt,
 		},
+		graphql = {
+			require("formatter.filetypes.graphql").prettierd,
+		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
@@ -34,9 +36,12 @@ require("formatter").setup({
 })
 
 -- Automatically run :FormatWrite whenever a buffer is written
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.astro,*.ts,*.tsx,*.mjs,*.js,*.jsx,*.json,*.graphql FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.js,*.json,*.graphql,*.prisma FormatWrite
 augroup END
-]], true)
+]],
+	true
+)
