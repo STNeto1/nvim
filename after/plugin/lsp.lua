@@ -10,7 +10,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 cmp.setup({
 	sources = {
-		-- { name = "copilot" },
+		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 	},
 	mapping = {
