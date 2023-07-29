@@ -1,3 +1,5 @@
+local util = require("formatter.util")
+
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
 	-- Enable or disable logging
@@ -24,6 +26,18 @@ require("formatter").setup({
 		graphql = {
 			require("formatter.filetypes.graphql").prettierd,
 		},
+		ocaml = {
+			function()
+				return {
+					exe = "ocamlformat",
+					args = {
+						"--enable-outside-detected-project",
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+				}
+			end,
+		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
@@ -40,7 +54,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.js,*.json,*.graphql,*.prisma FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.js,*.json,*.graphql,*.prisma,*.ml FormatWrite
 augroup END
 ]],
 	true
