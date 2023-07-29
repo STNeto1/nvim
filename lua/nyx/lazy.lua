@@ -102,4 +102,10 @@ require("lazy").setup({
 	{
 		"ThePrimeagen/harpoon",
 	},
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
 })
