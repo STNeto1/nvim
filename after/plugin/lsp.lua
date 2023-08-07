@@ -15,8 +15,6 @@ cmp.setup({
 	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({
-			-- documentation says this is important.
-			-- I don't know why.
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		}),
@@ -82,7 +80,5 @@ lsp.set_server_config({
 		},
 	},
 })
-
-lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()

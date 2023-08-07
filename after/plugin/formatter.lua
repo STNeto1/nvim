@@ -17,6 +17,12 @@ require("formatter").setup({
 		typescriptreact = {
 			require("formatter.defaults.prettierd"),
 		},
+		javascript = {
+			require("formatter.defaults.prettierd"),
+		},
+		javascriptreact = {
+			require("formatter.defaults.prettierd"),
+		},
 		go = {
 			require("formatter.filetypes.go").goimports,
 		},
@@ -54,7 +60,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.js,*.json,*.graphql,*.prisma,*.ml FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.jsx,*.js,*.json,*.graphql,*.prisma,*.ml FormatWrite
 augroup END
 ]],
 	true
