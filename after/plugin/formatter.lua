@@ -32,6 +32,9 @@ require("formatter").setup({
 		graphql = {
 			require("formatter.filetypes.graphql").prettierd,
 		},
+		svelte = {
+			require("formatter.defaults.prettierd"),
+		},
 		ocaml = {
 			function()
 				return {
@@ -60,7 +63,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.mjs,*.jsx,*.js,*.json,*.graphql,*.prisma,*.ml FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.svelte FormatWrite
 augroup END
 ]],
 	true

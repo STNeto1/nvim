@@ -76,27 +76,9 @@ require("lazy").setup({
 		"mhartington/formatter.nvim",
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
-	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = {
 			{ "kevinhwang91/promise-async" },
-		},
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"mfussenegger/nvim-dap",
 		},
 	},
 	{
@@ -107,5 +89,14 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = {},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		dependencies = {},
 	},
 })
