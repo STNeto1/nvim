@@ -11,6 +11,9 @@ require("formatter").setup({
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
+		json = {
+			require("formatter.defaults.prettierd"),
+		},
 		typescript = {
 			require("formatter.defaults.prettierd"),
 		},
