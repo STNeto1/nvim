@@ -99,4 +99,8 @@ require("lazy").setup({
 		cmd = "Copilot",
 		dependencies = {},
 	},
+	{
+		"f-person/git-blame.nvim",
+		dependencies = {},
+	},
 })
