@@ -103,4 +103,12 @@ require("lazy").setup({
 		"f-person/git-blame.nvim",
 		dependencies = {},
 	},
+	{
+		"folke/tokyonight.nvim",
+		dependencies = {},
+	},
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+		dependencies = {},
+	},
 })

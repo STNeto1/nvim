@@ -14,6 +14,9 @@ require("formatter").setup({
 		json = {
 			require("formatter.defaults.prettierd"),
 		},
+		html = {
+			require("formatter.defaults.prettierd"),
+		},
 		typescript = {
 			require("formatter.defaults.prettierd"),
 		},
@@ -37,6 +40,9 @@ require("formatter").setup({
 		},
 		svelte = {
 			require("formatter.defaults.prettierd"),
+		},
+		astro = {
+			require("formatter.defaults.prettier"),
 		},
 		ocaml = {
 			function()
@@ -66,7 +72,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.svelte FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html,*.astro FormatWrite
 augroup END
 ]],
 	true
