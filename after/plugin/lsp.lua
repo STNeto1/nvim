@@ -8,7 +8,6 @@ local lsp = require("lsp-zero").preset({
 
 cmp.setup({
 	sources = {
-		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 	},
 	mapping = {
@@ -19,10 +18,23 @@ cmp.setup({
 	},
 })
 
+local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 lsp.setup_nvim_cmp({
 	mapping = lsp.defaults.cmp_mappings({
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		["<C-p>"] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.select_prev_item(cmp_select_opts)
+			else
+				cmp.complete()
+			end
+		end),
+		["<C-n>"] = cmp.mapping(function()
+			if cmp.visible() then
+				cmp.select_next_item(cmp_select_opts)
+			else
+				cmp.complete()
+			end
+		end),
 		["<C-y>"] = cmp.mapping.confirm({ select = true }),
 		["<C-Space>"] = cmp.mapping.complete(),
 	}),

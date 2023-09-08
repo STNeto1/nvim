@@ -111,4 +111,8 @@ require("lazy").setup({
 		"nyoom-engineering/oxocarbon.nvim",
 		dependencies = {},
 	},
+	{
+		"mbbill/undotree",
+		dependencies = {},
+	},
 })
