@@ -53,5 +53,4 @@ vim.opt.background = "dark" -- set this to dark or light
 vim.cmd("colorscheme oxocarbon")
 
 -- Set background to transparent
--- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
--- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
