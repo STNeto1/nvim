@@ -66,7 +66,7 @@ require("lazy").setup({
 		opts = {
 			options = {
 				icons_enabled = false,
-				-- theme = 'onedark',
+				theme = 'tokyonight',
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -108,11 +108,11 @@ require("lazy").setup({
 		dependencies = {},
 	},
 	{
-		"nyoom-engineering/oxocarbon.nvim",
+		"mbbill/undotree",
 		dependencies = {},
 	},
 	{
-		"mbbill/undotree",
+		"lewis6991/gitsigns.nvim",
 		dependencies = {},
 	},
 })

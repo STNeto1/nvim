@@ -42,10 +42,7 @@ require("formatter").setup({
 			require("formatter.defaults.prettierd"),
 		},
 		astro = {
-			require("formatter.defaults.prettierd"),
-		},
-		html = {
-			require("formatter.defaults.prettierd"),
+			require("formatter.defaults.prettier"),
 		},
 		ocaml = {
 			function()
