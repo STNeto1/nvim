@@ -44,6 +44,18 @@ require("formatter").setup({
 		astro = {
 			require("formatter.defaults.prettier"),
 		},
+		proto = {
+			function()
+				return {
+					exe = "buf",
+					args = {
+						"format",
+						util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+				}
+			end,
+		},
 		ocaml = {
 			function()
 				return {
@@ -72,7 +84,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html,*.astro,*.js FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html,*.proto FormatWrite
 augroup END
 ]],
 	true
