@@ -119,4 +119,12 @@ require("lazy").setup({
 		"lvimuser/lsp-inlayhints.nvim",
 		dependencies = {},
 	},
+	{
+		"olexsmir/gopher.nvim",
+		build = ":GoInstallDeps",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 })

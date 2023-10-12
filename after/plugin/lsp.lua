@@ -162,6 +162,11 @@ lsp_cfg.gopls.setup({
 	end,
 	settings = {
 		gopls = {
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+				unreachable = true,
+			},
 			hints = {
 				assignVariableTypes = true,
 				compositeLiteralFields = true,
