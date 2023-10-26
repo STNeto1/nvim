@@ -1,5 +1,7 @@
 local cmp = require("cmp")
-local lsp = require("lsp-zero").preset({
+local cmp_format = require("lsp-zero").cmp_format()
+
+local lsp_zero = require("lsp-zero").preset({
 	name = "minimal",
 	set_lsp_keymaps = true,
 	manage_nvim_cmp = true,
@@ -7,6 +9,7 @@ local lsp = require("lsp-zero").preset({
 })
 
 cmp.setup({
+	formatting = cmp_format,
 	sources = {
 		{ name = "nvim_lsp" },
 	},
@@ -16,42 +19,37 @@ cmp.setup({
 			select = false,
 		}),
 	},
-})
-
-local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
-lsp.setup_nvim_cmp({
-	mapping = lsp.defaults.cmp_mappings({
-		["<C-p>"] = cmp.mapping(function()
-			if cmp.visible() then
-				cmp.select_prev_item(cmp_select_opts)
-			else
-				cmp.complete()
-			end
-		end),
-		["<C-n>"] = cmp.mapping(function()
-			if cmp.visible() then
-				cmp.select_next_item(cmp_select_opts)
-			else
-				cmp.complete()
-			end
-		end),
-		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<C-Space>"] = cmp.mapping.complete(),
-	}),
-})
-
-lsp.set_preferences({
-	suggest_lsp_servers = false,
-	sign_icons = {
-		error = "E",
-		warn = "W",
-		hint = "H",
-		info = "I",
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
 	},
 })
 
-lsp.on_attach(function(_, bufnr)
-	lsp.default_keymaps({ buffer = bufnr })
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = {},
+	handlers = {
+		lsp_zero.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp_zero.nvim_lua_ls()
+			require("lspconfig").lua_ls.setup(lua_opts)
+		end,
+	},
+})
+
+lsp_zero.set_preferences({
+	suggest_lsp_servers = false,
+	sign_icons = {
+		error = "✘",
+		warn = "▲",
+		hint = "⚑",
+		info = "»",
+	},
+})
+
+lsp_zero.on_attach(function(_, bufnr)
+	lsp_zero.default_keymaps({ buffer = bufnr })
 
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -76,28 +74,6 @@ lsp.on_attach(function(_, bufnr)
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 end)
-
--- (Optional) Configure lua language server for neovim
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.ensure_installed({
-	"tsserver",
-	"lua_ls",
-	"rust_analyzer",
-	"gopls",
-})
-
--- ufo related
--- lsp.set_server_config({
--- 	capabilities = {
--- 		textDocument = {
--- 			foldingRange = {
--- 				dynamicRegistration = false,
--- 				lineFoldingOnly = true,
--- 			},
--- 		},
--- 	},
--- })
 
 -- inlayhints
 local ih = require("lsp-inlayhints")
@@ -179,4 +155,4 @@ lsp_cfg.gopls.setup({
 	},
 })
 
-lsp.setup()
+lsp_zero.setup()
