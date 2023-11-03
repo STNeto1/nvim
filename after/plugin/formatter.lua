@@ -42,7 +42,7 @@ require("formatter").setup({
 			require("formatter.defaults.prettierd"),
 		},
 		astro = {
-			require("formatter.defaults.prettier"),
+			require("formatter.defaults.prettierd"),
 		},
 		proto = {
 			function()
@@ -84,7 +84,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
 autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html FormatWrite
+autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html,*.astro FormatWrite
 augroup END
 ]],
 	true
