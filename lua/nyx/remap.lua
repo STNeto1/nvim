@@ -24,12 +24,15 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
+-- Copy whole block
+vim.keymap.set("n", "Y", "yVaB")
+
 -- Remove Q mapping
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Format
 -- vim.keymap.set("n", "g", ":Format<CR>")
-vim.keymap.set("n", "g", ":FormatWrite<CR>")
+-- vim.keymap.set("n", "g", ":FormatWrite<CR>")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
