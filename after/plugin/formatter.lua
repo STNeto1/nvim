@@ -1,5 +1,18 @@
 local util = require("formatter.util")
 
+local biome = function()
+	return {
+		exe = "bunx",
+		args = {
+			"@biomejs/biome",
+			"format",
+			"--stdin-file-path",
+			util.escape_path(util.get_current_buffer_file_path()),
+		},
+		stdin = true,
+	}
+end
+
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
 	-- Enable or disable logging
@@ -18,13 +31,13 @@ require("formatter").setup({
 			require("formatter.defaults.prettierd"),
 		},
 		typescript = {
-			require("formatter.defaults.prettierd"),
+			biome,
 		},
 		typescriptreact = {
 			require("formatter.defaults.prettierd"),
 		},
 		javascript = {
-			require("formatter.defaults.prettierd"),
+			require("formatter.defaults.biome"),
 		},
 		javascriptreact = {
 			require("formatter.defaults.prettierd"),
