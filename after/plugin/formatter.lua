@@ -25,7 +25,7 @@ require("formatter").setup({
 			require("formatter.filetypes.lua").stylua,
 		},
 		json = {
-			require("formatter.defaults.prettierd"),
+			biome,
 		},
 		html = {
 			require("formatter.defaults.prettierd"),
@@ -37,7 +37,7 @@ require("formatter").setup({
 			require("formatter.defaults.prettierd"),
 		},
 		javascript = {
-			require("formatter.defaults.biome"),
+			biome,
 		},
 		javascriptreact = {
 			require("formatter.defaults.prettierd"),
@@ -50,24 +50,6 @@ require("formatter").setup({
 		},
 		graphql = {
 			require("formatter.filetypes.graphql").prettierd,
-		},
-		svelte = {
-			require("formatter.defaults.prettierd"),
-		},
-		astro = {
-			require("formatter.defaults.prettierd"),
-		},
-		proto = {
-			function()
-				return {
-					exe = "buf",
-					args = {
-						"format",
-						util.escape_path(util.get_current_buffer_file_path()),
-					},
-					stdin = true,
-				}
-			end,
 		},
 		ocaml = {
 			function()
@@ -95,10 +77,10 @@ require("formatter").setup({
 -- Automatically run :FormatWrite whenever a buffer is written
 vim.api.nvim_exec(
 	[[
-augroup FormatAutogroup
-autocmd!
-autocmd BufWritePost *.lua,*.go,*.rs,*.ts,*.tsx,*.json,*.graphql,*.ml,*.html,*.astro FormatWrite
-augroup END
+  augroup FormatAutogroup
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+  augroup END
 ]],
 	true
 )
