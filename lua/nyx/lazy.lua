@@ -32,8 +32,8 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 	},
-    {'williamboman/mason.nvim'},
-{'williamboman/mason-lspconfig.nvim'},
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
 	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
@@ -53,7 +53,7 @@ require("lazy").setup({
 		opts = {
 			options = {
 				icons_enabled = false,
-				theme = "tokyonight",
+				-- theme = "tokyonight",
 				component_separators = "|",
 				section_separators = "",
 			},
@@ -63,12 +63,6 @@ require("lazy").setup({
 		"mhartington/formatter.nvim",
 	},
 	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = {
-			{ "kevinhwang91/promise-async" },
-		},
-	},
-	{
 		"ThePrimeagen/harpoon",
 	},
 	{
@@ -76,10 +70,6 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		dependencies = {},
 	},
 	{
 		"zbirenbaum/copilot.lua",
@@ -95,10 +85,6 @@ require("lazy").setup({
 		dependencies = {},
 	},
 	{
-		"mbbill/undotree",
-		dependencies = {},
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		dependencies = {},
 	},
@@ -107,11 +93,9 @@ require("lazy").setup({
 		dependencies = {},
 	},
 	{
-		"olexsmir/gopher.nvim",
-		build = ":GoInstallDeps",
+		"kdheepak/lazygit.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
 		},
 	},
 })
