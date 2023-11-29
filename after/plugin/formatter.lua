@@ -51,6 +51,20 @@ require("formatter").setup({
 		graphql = {
 			require("formatter.filetypes.graphql").prettierd,
 		},
+		elixir = {
+			require("formatter.filetypes.elixir").mixformat,
+		},
+		heex = {
+			function()
+				return {
+					exe = "mix",
+					args = {
+						"format",
+					},
+					stdin = false,
+				}
+			end,
+		},
 		ocaml = {
 			function()
 				return {
