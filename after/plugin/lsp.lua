@@ -185,4 +185,16 @@ lspconfig.emmet_ls.setup({
 	filetypes = { "html", "css", "elixir", "eelixir", "heex" },
 })
 
+-- fold
+lsp_zero.set_server_config({
+	capabilities = {
+		textDocument = {
+			foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			},
+		},
+	},
+})
+
 lsp_zero.setup()

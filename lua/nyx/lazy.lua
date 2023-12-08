@@ -23,6 +23,13 @@ require("lazy").setup({
 		name = "rose-pine",
 	},
 	{
+		"craftzdog/solarized-osaka.nvim",
+		name = "solarized-osaka",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
@@ -38,7 +45,13 @@ require("lazy").setup({
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
-	{ "L3MON4D3/LuaSnip" },
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp",
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
@@ -96,6 +109,12 @@ require("lazy").setup({
 		"kdheepak/lazygit.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			"kevinhwang91/promise-async",
 		},
 	},
 })
