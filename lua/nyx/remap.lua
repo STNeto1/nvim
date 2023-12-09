@@ -30,8 +30,11 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 -- Copy whole block
 vim.keymap.set("n", "Y", "yVaB")
 
--- Remove Q mapping
-vim.keymap.set("n", "Q", "<nop>")
+-- Remap to macros
+vim.keymap.set("n", "Q", "@qj")
+
+-- Remap to macros
+vim.keymap.set("x", "Q", ":norm @q<CR>")
 
 -- Format
 -- vim.keymap.set("n", "g", ":Format<CR>")
