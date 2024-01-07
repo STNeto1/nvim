@@ -40,3 +40,9 @@ vim.opt.colorcolumn = "120"
 -- check spelling
 vim.opt.spelllang = "en_us" -- en_us, pt_br
 vim.opt.spell = true
+
+-- set this to dark or light
+vim.opt.background = "dark"
+
+-- set transparent background
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

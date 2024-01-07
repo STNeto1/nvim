@@ -12,109 +12,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.2",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-	},
-	{
-		"craftzdog/solarized-osaka.nvim",
-		name = "solarized-osaka",
-		lazy = false,
-		priority = 1000,
-		opts = {},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-	},
-	{
-		"tpope/vim-fugitive",
-	},
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
-	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
-	{ "neovim/nvim-lspconfig" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/nvim-cmp" },
-	{
-		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp",
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{ "numToStr/Comment.nvim", opts = {} },
-	{
-		-- Set lualine as statusline
-		"nvim-lualine/lualine.nvim",
-		-- See `:help lualine.txt`
-		-- opts = {
-		-- 	options = {
-		-- 		icons_enabled = false,
-		-- 		-- theme = "tokyonight",
-		-- 		component_separators = "|",
-		-- 		section_separators = "",
-		-- 	},
-		-- },
-	},
-	{
-		"mhartington/formatter.nvim",
-	},
-	{
-		"ThePrimeagen/harpoon",
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		dependencies = {},
-	},
-	{
-		"f-person/git-blame.nvim",
-		dependencies = {},
-	},
-	{
-		"folke/tokyonight.nvim",
-		dependencies = {},
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		dependencies = {},
-	},
-	{
-		"lvimuser/lsp-inlayhints.nvim",
-		dependencies = {},
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-	},
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = {
-			"kevinhwang91/promise-async",
-		},
-	},
-})
+require("lazy").setup('nyx.plugins')
+
+-- require("lazy").setup({
+-- 	{ "williamboman/mason.nvim" },
+-- 	{ "williamboman/mason-lspconfig.nvim" },
+-- 	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
+-- 	{ "neovim/nvim-lspconfig" },
+-- 	{ "hrsh7th/cmp-nvim-lsp" },
+-- 	{ "hrsh7th/nvim-cmp" },
+-- 	{
+-- 		"L3MON4D3/LuaSnip",
+-- 		-- follow latest release.
+-- 		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+-- 		-- install jsregexp (optional!).
+-- 		build = "make install_jsregexp",
+-- 	},
