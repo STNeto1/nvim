@@ -161,29 +161,7 @@ lspconfig.gopls.setup({
 
 lspconfig.tailwindcss.setup({
 	capabilities = capabilities,
-	filetypes = { "html", "elixir", "eelixir", "heex", "templ" },
-	init_options = {
-		userLanguages = {
-			elixir = "html-eex",
-			eelixir = "html-eex",
-			heex = "html-eex",
-			templ = "html",
-		},
-	},
-	settings = {
-		tailwindCSS = {
-			experimental = {
-				classRegex = {
-					'class[:]\\s*"([^"]*)"',
-				},
-			},
-		},
-	},
-})
-
-lspconfig.emmet_ls.setup({
-	capabilities = capabilities,
-	filetypes = { "html", "css", "elixir", "eelixir", "heex", "templ" },
+	filetypes = { "*"},
 })
 
 -- fold
