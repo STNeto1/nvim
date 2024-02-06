@@ -28,7 +28,7 @@ return {
 					require("formatter.filetypes.lua").stylua,
 				},
 				json = {
-					biome,
+					require("formatter.defaults.prettierd"),
 				},
 				html = {
 					require("formatter.defaults.prettierd"),
@@ -41,6 +41,9 @@ return {
 				},
 				javascript = {
 					biome,
+				},
+				astro = {
+					require("formatter.defaults.prettierd"),
 				},
 				javascriptreact = {
 					require("formatter.defaults.prettierd"),
@@ -112,5 +115,5 @@ return {
 ]],
 			true
 		)
-	end
+	end,
 }
