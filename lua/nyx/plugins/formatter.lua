@@ -15,10 +15,10 @@ return {
 					require("formatter.filetypes.lua").stylua,
 				},
 				json = {
-					require("formatter.defaults.prettierd"),
+					require("formatter.defaults.biome"),
 				},
 				html = {
-					require("formatter.defaults.prettierd"),
+					require("formatter.defaults.biome"),
 				},
 				typescript = {
 					require("formatter.defaults.biome"),
@@ -30,10 +30,10 @@ return {
 					require("formatter.defaults.biome"),
 				},
 				astro = {
-					require("formatter.defaults.prettierd"),
+					require("formatter.defaults.biome"),
 				},
 				javascriptreact = {
-					require("formatter.defaults.prettierd"),
+					require("formatter.defaults.biome"),
 				},
 				go = {
 					require("formatter.filetypes.go").goimports,
@@ -42,7 +42,7 @@ return {
 					require("formatter.filetypes.rust").rustfmt,
 				},
 				graphql = {
-					require("formatter.filetypes.graphql").prettierd,
+					require("formatter.filetypes.graphql").biome,
 				},
 				python = {
 					require("formatter.filetypes.python").ruff,
