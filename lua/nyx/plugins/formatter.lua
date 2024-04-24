@@ -35,6 +35,11 @@ return {
 				javascriptreact = {
 					require("formatter.defaults.biome"),
 				},
+				svelte = {
+					function()
+						vim.lsp.buf.format({ async = true })
+					end,
+				},
 				go = {
 					require("formatter.filetypes.go").goimports,
 				},
