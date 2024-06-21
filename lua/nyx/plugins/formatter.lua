@@ -52,20 +52,23 @@ return {
 				python = {
 					require("formatter.filetypes.python").ruff,
 				},
-				-- elixir = {
-				-- 	require("formatter.filetypes.elixir").mixformat,
-				-- },
-				-- heex = {
-				-- 	function()
-				-- 		return {
-				-- 			exe = "mix",
-				-- 			args = {
-				-- 				"format",
-				-- 			},
-				-- 			stdin = false,
-				-- 		}
-				-- 	end,
-				-- },
+				elixir = {
+					require("formatter.filetypes.elixir").mixformat,
+				},
+				yaml = {
+					require("formatter.filetypes.yaml").yamlfmt,
+				},
+				heex = {
+					function()
+						return {
+							exe = "mix",
+							args = {
+								"format",
+							},
+							stdin = false,
+						}
+					end,
+				},
 				-- ocaml = {
 				-- 	function()
 				-- 		return {
@@ -84,18 +87,18 @@ return {
 				["*"] = {
 					-- "formatter.filetypes.any" defines default configurations for any
 					-- filetype
-					require("formatter.filetypes.any").remove_trailing_whitespace,
+					-- require("formatter.filetypes.any").remove_trailing_whitespace,
 
 					-- -- code to use default lsp formatter if nothing matched before
 					-- -- its not good because it lags a lot
-					-- function()
-					-- 	-- Ignore already configured types.
-					-- 	local defined_types = require("formatter.config").values.filetype
-					-- 	if defined_types[vim.bo.filetype] ~= nil then
-					-- 		return nil
-					-- 	end
-					-- 	vim.lsp.buf.format({ async = true })
-					-- end,
+					function()
+						-- Ignore already configured types.
+						local defined_types = require("formatter.config").values.filetype
+						if defined_types[vim.bo.filetype] ~= nil or vim.bo.filetype == "make" then
+							return nil
+						end
+						vim.lsp.buf.format({ async = true })
+					end,
 				},
 			},
 		})
