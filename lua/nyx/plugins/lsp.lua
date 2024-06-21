@@ -1,13 +1,13 @@
 return {
-	'VonHeikemen/lsp-zero.nvim',
-	branch = 'v3.x',
+	"VonHeikemen/lsp-zero.nvim",
+	branch = "v3.x",
 	dependencies = {
-		'neovim/nvim-lspconfig',
-		'hrsh7th/cmp-nvim-lsp',
-		'hrsh7th/nvim-cmp',
-		'L3MON4D3/LuaSnip',
+		"neovim/nvim-lspconfig",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/nvim-cmp",
+		"L3MON4D3/LuaSnip",
 		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim"
+		"williamboman/mason-lspconfig.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -169,8 +169,24 @@ return {
 			filetypes = { "*" },
 		})
 
-
+		lspconfig.biome.setup({
+			capabilities = capabilities,
+			cmd = { "biome", "lsp-proxy" },
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"json",
+				"jsonc",
+				"typescript",
+				"typescript.tsx",
+				"typescriptreact",
+				"astro",
+				"svelte",
+				"vue",
+			},
+			root_pattern = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
+		})
 
 		lsp_zero.setup()
-	end
+	end,
 }
