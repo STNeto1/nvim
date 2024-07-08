@@ -7,4 +7,18 @@ return {
 			require("Comment").setup()
 		end,
 	},
+	{
+		"f-person/git-blame.nvim",
+		config = function()
+			require("gitblame").setup({
+				enabled = true,
+			})
+		end,
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	},
 }
