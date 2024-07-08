@@ -76,8 +76,15 @@ return {
 		lazy = false,
 		priority = 1000,
 		name = "vesper",
+		config = function() end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		name = "tokyo",
 		config = function()
-			vim.cmd([[colorscheme vesper]])
+			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
 	config = function() end,
