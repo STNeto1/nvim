@@ -10,54 +10,11 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 	},
 	config = function()
-		local cmp = require("cmp")
-		local cmp_format = require("lsp-zero").cmp_format()
-
 		local lsp_zero = require("lsp-zero").preset({
 			name = "minimal",
 			set_lsp_keymaps = true,
 			manage_nvim_cmp = true,
 			suggest_lsp_servers = false,
-		})
-
-		cmp.setup({
-			formatting = cmp_format,
-			sources = {
-				{ name = "nvim_lsp" },
-			},
-			mapping = {
-				["<CR>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = false,
-				}),
-			},
-			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
-				end,
-			},
-		})
-
-		require("mason").setup({})
-		require("mason-lspconfig").setup({
-			ensure_installed = {},
-			handlers = {
-				lsp_zero.default_setup,
-				lua_ls = function()
-					local lua_opts = lsp_zero.nvim_lua_ls()
-					require("lspconfig").lua_ls.setup(lua_opts)
-				end,
-			},
-		})
-
-		lsp_zero.set_preferences({
-			suggest_lsp_servers = false,
-			sign_icons = {
-				error = "✘",
-				warn = "▲",
-				hint = "⚑",
-				info = "»",
-			},
 		})
 
 		lsp_zero.on_attach(function(_, bufnr)
@@ -81,10 +38,50 @@ return {
 			nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 		end)
 
+		require("mason").setup({})
+		require("mason-lspconfig").setup({
+			ensure_installed = {},
+			handlers = {
+				lsp_zero.default_setup,
+				lua_ls = function()
+					local lua_opts = lsp_zero.nvim_lua_ls()
+					require("lspconfig").lua_ls.setup(lua_opts)
+				end,
+			},
+		})
+
+		lsp_zero.set_preferences({
+			suggest_lsp_servers = false,
+			sign_icons = {
+				error = "✘",
+				warn = "▲",
+				hint = "⚑",
+				info = "»",
+			},
+		})
+
+		local cmp = require("cmp")
+		local cmp_format = require("lsp-zero").cmp_format()
+		cmp.setup({
+			formatting = cmp_format,
+			sources = {
+				{ name = "nvim_lsp" },
+			},
+			mapping = {
+				["<CR>"] = cmp.mapping.confirm({
+					behavior = cmp.ConfirmBehavior.Replace,
+					select = false,
+				}),
+			},
+			snippet = {
+				expand = function(args)
+					require("luasnip").lsp_expand(args.body)
+				end,
+			},
+		})
+
 		-- inlayhints
 		local ih = require("lsp-inlayhints")
-		local lspconfig = require("lspconfig")
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		ih.setup({
 			{
 				inlay_hints = {
@@ -121,6 +118,8 @@ return {
 			},
 		})
 
+		local lspconfig = require("lspconfig")
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		lspconfig.tsserver.setup({
 			on_attach = function(client, bufnr)
 				ih.on_attach(client, bufnr)
