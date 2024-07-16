@@ -11,6 +11,9 @@ return {
 			log_level = vim.log.levels.WARN,
 			-- All formatter configurations are opt-in
 			filetype = {
+				c = {
+					require("formatter.filetypes.c").clangformat,
+				},
 				lua = {
 					require("formatter.filetypes.lua").stylua,
 				},
