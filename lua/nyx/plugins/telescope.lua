@@ -7,7 +7,8 @@ return {
 		local theme = require("telescope.themes")
 
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[?] Find files in the project " })
-		vim.keymap.set("n", "<leader>fr", builtin.live_grep, {
+		vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "[?] Find references" })
+		vim.keymap.set("n", "<leader>fl", builtin.live_grep, {
 			desc = "[?] Search for a string in your current working directory and get results live as you type, respects .gitignore.",
 		})
 		vim.keymap.set("n", "<leader>fs", builtin.grep_string, {
