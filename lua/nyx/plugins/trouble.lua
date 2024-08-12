@@ -1,5 +1,6 @@
 return {
 	"folke/trouble.nvim",
+	tag = "v2.10.0",
 	opts = {
 		icons = {
 			indent = {
@@ -26,30 +27,17 @@ return {
 	},
 	config = function()
 		require("trouble").setup()
-		--
-		-- vim.keymap.set("n", "<leader>tt", function()
-		-- 	trouble.toggle()
-		-- end)
-		--
-		-- vim.keymap.set("n", "<leader>tn", function()
-		-- 	trouble.next({ skip_groups = true, jump = true })
-		-- end)
-		--
-		-- vim.keymap.set("n", "<leader>tp", function()
-		-- 	trouble.previous({ skip_groups = true, jump = true })
-		-- end)
+
+		vim.keymap.set("n", "<leader>tt", function()
+			require("trouble").toggle()
+		end)
+
+		vim.keymap.set("n", "<leader>tn", function()
+			require("trouble").next({ skip_groups = true, jump = true })
+		end)
+
+		vim.keymap.set("n", "<leader>tp", function()
+			require("trouble").previous({ skip_groups = true, jump = true })
+		end)
 	end,
-	cmd = "Trouble",
-	keys = {
-		{
-			"<leader>tt",
-			"<cmd>Trouble diagnostics toggle<cr>",
-			desc = "Diagnostics (Trouble)",
-		},
-		{
-			"<leader>tl",
-			"<cmd>Trouble loclist toggle<cr>",
-			desc = "Location List (Trouble)",
-		},
-	},
 }
