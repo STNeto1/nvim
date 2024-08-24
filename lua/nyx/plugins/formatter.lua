@@ -1,5 +1,6 @@
 return {
 	"mhartington/formatter.nvim",
+	enabled = false,
 	config = function()
 		local util = require("formatter.util")
 
@@ -21,9 +22,6 @@ return {
 							stdin = false,
 						}
 					end,
-				},
-				c = {
-					require("formatter.filetypes.c").clangformat,
 				},
 				lua = {
 					require("formatter.filetypes.lua").stylua,
