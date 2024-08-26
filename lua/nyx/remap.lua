@@ -53,3 +53,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Paste and replace
 vim.keymap.set("n", "P", "VP")
+
+-- Next/previous item on ccl
+vim.keymap.set("n", "<leader>cn", ":cn<CR>")
+vim.keymap.set("n", "<leader>cp", ":cp<CR>")
+vim.keymap.set("n", "<leader>cc", ":ccl<CR>")
