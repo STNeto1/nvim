@@ -9,7 +9,11 @@ return {
 				typescript = { "biome" },
 				typescriptreact = { "biome" },
 				javascript = { "biome" },
+				json = { "biome" },
 				sql = { "sleek" },
+				toml = { "taplo" },
+				xml = { "xmlformat" },
+				yaml = { "yamlfmt" },
 			},
 		})
 
