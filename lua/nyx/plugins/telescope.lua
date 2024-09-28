@@ -14,6 +14,9 @@ return {
 		vim.keymap.set("n", "<leader>fs", builtin.grep_string, {
 			desc = "[?] Searches for the string under your cursor or selection in your current working directory",
 		})
+		vim.keymap.set("n", "<leader>gs", builtin.git_files, {
+			desc = "[?] Fuzzy search through the output of git ls-files command, respects .gitignore",
+		})
 		vim.keymap.set("n", "<leader>F", function()
 			-- You can pass additional configuration to telescope to change theme, layout, etc.
 			builtin.current_buffer_fuzzy_find(theme.get_dropdown({
