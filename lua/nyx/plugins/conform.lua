@@ -14,6 +14,7 @@ return {
 				toml = { "taplo" },
 				xml = { "xmlformat" },
 				yaml = { "yamlfmt" },
+				elixir = { "mix" },
 			},
 		})
 
