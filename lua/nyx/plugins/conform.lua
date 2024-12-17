@@ -12,9 +12,9 @@ return {
 				json = { "biome" },
 				sql = { "sleek" },
 				toml = { "taplo" },
-				xml = { "xmlformat" },
 				yaml = { "yamlfmt" },
 				elixir = { "mix" },
+				heex = { "mix" },
 			},
 		})
 
