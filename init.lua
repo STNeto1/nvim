@@ -178,6 +178,9 @@ vim.keymap.set('n', '<leader>[d', vim.diagnostic.goto_prev, { desc = 'Go to prev
 vim.keymap.set('n', '<leader>]d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostics message' })
 vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
 vim.keymap.set('n', '<leader>t', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.setqflist()
+end, { desc = 'No idea' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -786,22 +789,19 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
-        else
-          lsp_format_opt = 'fallback'
-        end
-        return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
-        }
-      end,
+      -- format_on_save = function(bufnr)
+      --   local disable_filetypes = { c = true, cpp = true }
+      --   local lsp_format_opt
+      --   if disable_filetypes[vim.bo[bufnr].filetype] then
+      --     lsp_format_opt = 'never'
+      --   else
+      --     lsp_format_opt = 'fallback'
+      --   end
+      --   return {
+      --     timeout_ms = 500,
+      --     lsp_format = lsp_format_opt,
+      --   }
+      -- end,
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
@@ -813,13 +813,18 @@ require('lazy').setup({
         rust = { 'rustfmt', lsp_format = 'fallback' },
         typescript = { 'biome' },
         typescriptreact = { 'biome' },
+        -- svelte = { 'biome' },
         javascript = { 'biome' },
+        graphql = { 'biome' },
+        graphqls = { 'biome' },
         json = { 'biome' },
         sql = { 'sleek' },
         toml = { 'taplo' },
         yaml = { 'yamlfmt' },
         elixir = { 'mix' },
         heex = { 'mix' },
+        latex = { 'latexindent' },
+        ocaml = { 'ocamlformat' },
       },
     },
   },
@@ -933,7 +938,8 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
-          { name = 'luasnip' },
+          -- { name = 'supermaven' },
+          -- { name = 'luasnip' },
           { name = 'path' },
         },
       }
@@ -946,12 +952,46 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+
+      -- You can configure highlights by doing something like:
+      -- vim.cmd.hi 'Comment gui=none'
+    end,
+  },
+
+  { -- You can easily change to a different colorscheme.
+    -- Change the name of the colorscheme plugin below, and then
+    -- change the command in the config to whatever the name of that colorscheme is.
+    --
+    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+    'tiagovla/tokyodark.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    init = function()
+      require('tokyodark').setup {
+        transparent_background = false, -- set background to transparent
+        gamma = 1.00, -- adjust the brightness of the theme
+        styles = {
+          comments = { italic = false }, -- style for comments
+          keywords = { italic = false }, -- style for keywords
+          identifiers = { italic = false }, -- style for identifiers
+          functions = {}, -- style for functions
+          variables = {}, -- style for variables
+        },
+        custom_highlights = {} or function(highlights, palette)
+          return {}
+        end, -- extend highlights
+        custom_palette = {} or function(palette)
+          return {}
+        end, -- extend palette
+        terminal_colors = true, -- enable terminal colors
+      }
+
+      vim.cmd.colorscheme 'tokyodark'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -1018,6 +1058,71 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function(_self, _opts)
+      require('treesitter-context').setup {
+        enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+        multiwindow = false, -- Enable multiwindow support.
+        max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+        line_numbers = true,
+        multiline_threshold = 20, -- Maximum number of lines to show for a single context
+        trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+        mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
+        -- Separator between context and content. Should be a single character string, like '-'.
+        -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+        separator = nil,
+        zindex = 20, -- The Z-index of the context window
+        on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+      }
+    end,
+  },
+  -- {
+  --   'supermaven-inc/supermaven-nvim',
+  --   config = function(_self, _opts)
+  --     require('supermaven-nvim').setup {
+  --       keymaps = {
+  --         accept_suggestion = '<C-s>',
+  --         -- clear_suggestion = '<C-]>',
+  --         -- accept_word = '<C-y>',
+  --       },
+  --       color = {
+  --         suggestion_color = '#ffffff',
+  --         cterm = 244,
+  --       },
+  --       -- ignore_filetypes = {}, -- or { "cpp", }
+  --       log_level = 'info', -- set to "off" to disable logging completely
+  --       disable_inline_completion = false, -- disables inline completion for use with cmp
+  --       disable_keymaps = false, -- disables built in keymaps for more manual control
+  --     }
+  --   end,
+  -- },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    config = function()
+      require('oil').setup {
+        columns = { 'icon' },
+        keymaps = {
+          ['<C-h>'] = 'false',
+          ['<M-h>'] = 'actions.select_split',
+        },
+        view_options = {
+          show_hidden = true,
+        },
+      }
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+      vim.keymap.set('n', '<space>-', require('oil').toggle_float)
+    end,
+  },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -1032,7 +1137,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
