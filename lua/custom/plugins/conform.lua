@@ -50,6 +50,7 @@ return { -- Autoformat
       heex = { 'mix' },
       latex = { 'latexindent' },
       ocaml = { 'ocamlformat' },
+      terraform = { 'terraform_fmt' },
     },
   },
 }
