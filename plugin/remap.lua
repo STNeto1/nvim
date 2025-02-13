@@ -1,5 +1,4 @@
 local set = vim.keymap.set
-local k = vim.keycode
 local opt = vim.opt
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
@@ -27,9 +26,9 @@ opt.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.schedule(function()
---   opt.clipboard = 'unnamedplus'
--- end)
+vim.schedule(function()
+  opt.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
 opt.breakindent = true
@@ -104,3 +103,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- quickfix list
+set('n', '<leader>[q', vim.cmd.cp, { desc = 'Go to previous quickfix list item' })
+set('n', '<leader>]q', vim.cmd.cn, { desc = 'Go to next quickfix list item' })
+set('n', '<leader>[[', vim.cmd.cclose, { desc = 'Go to next quickfix list item' })
+set('n', '<leader>]]', vim.cmd.copen, { desc = 'Go to next quickfix list item' })
