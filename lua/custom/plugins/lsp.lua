@@ -57,6 +57,9 @@ return {
         taplo = true,
 
         biome = true,
+
+        tailwindcss = {},
+
         ts_ls = {
           root_dir = require('lspconfig').util.root_pattern 'package.json',
           single_file = false,
@@ -118,7 +121,7 @@ return {
       local ensure_installed = {
         'stylua',
         'lua_ls',
-        -- "tailwind-language-server",
+        -- 'tailwindcss-language-server',
       }
 
       vim.list_extend(ensure_installed, servers_to_install)
@@ -187,17 +190,17 @@ return {
         end,
       })
 
-      require("lsp_lines").setup()
+      require('lsp_lines').setup()
       vim.diagnostic.config { virtual_text = true, virtual_lines = false }
 
-      vim.keymap.set("", "<leader>l", function()
+      vim.keymap.set('', '<leader>l', function()
         local config = vim.diagnostic.config() or {}
         if config.virtual_text then
           vim.diagnostic.config { virtual_text = false, virtual_lines = true }
         else
           vim.diagnostic.config { virtual_text = true, virtual_lines = false }
         end
-      end, { desc = "Toggle lsp_lines" })
+      end, { desc = 'Toggle lsp_lines' })
     end,
   },
 }
