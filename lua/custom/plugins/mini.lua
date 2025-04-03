@@ -14,7 +14,44 @@ return { -- Collection of various small independent plugins/modules
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    -- require('mini.surround').setup()
+
+    -- Move any selection in any direction
+    --
+    -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+    -- left = '<M-h>',
+    -- right = '<M-l>',
+    -- down = '<M-j>',
+    -- up = '<M-k>',
+    --
+    -- Move current line in Normal mode
+    -- line_left = '<M-h>',
+    -- line_right = '<M-l>',
+    -- line_down = '<M-j>',
+    -- line_up = '<M-k>',
+    require('mini.move').setup {
+      verbose = true,
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        -- Move visual selection in Visual mode. Using Ctrl instead of Alt/Meta
+        left = '<C-h>',
+        right = '<C-l>',
+        down = '<C-j>',
+        up = '<C-k>',
+
+        -- Move current line in Normal mode
+        line_left = '<C-h>',
+        line_right = '<C-l>',
+        line_down = '<C-j>',
+        line_up = '<C-k>',
+      },
+
+      -- Options which control moving behavior
+      options = {
+        -- Automatically reindent selection during linewise vertical move
+        reindent_linewise = true,
+      },
+    }
 
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
