@@ -1,5 +1,6 @@
 return {
   'yetone/avante.nvim',
+  enabled = false,
   event = 'VeryLazy',
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
@@ -12,7 +13,7 @@ return {
     cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
     claude = {
       endpoint = 'https://generativelanguage.googleapis.com/v1beta/models',
-      model = 'gemini-2.0-flash',
+      model = 'gemini-2.0-flash-thinking-exp-01-21',
       temperature = 0,
       max_tokens = 4096,
     },
