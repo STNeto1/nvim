@@ -20,8 +20,13 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      { 'j-hui/fidget.nvim', opts = {} },
-      { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' },
+      {
+        'j-hui/fidget.nvim',
+        tag = 'v1.0.0',
+        opts = {},
+        enabled = false,
+      },
+      { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim', enabled = false },
 
       -- Schema information
       'b0o/SchemaStore.nvim',
@@ -108,21 +113,21 @@ return {
         },
       }
 
-      local servers_to_install = vim.tbl_filter(function(key)
-        local t = servers[key]
-        if type(t) == 'table' then
-          return not t.manual_install
-        else
-          return t
-        end
-      end, vim.tbl_keys(servers))
+      -- local servers_to_install = vim.tbl_filter(function(key)
+      --   local t = servers[key]
+      --   if type(t) == 'table' then
+      --     return not t.manual_install
+      --   else
+      --     return t
+      --   end
+      -- end, vim.tbl_keys(servers))
 
       require('mason').setup()
-      local ensure_installed = {
-        'stylua',
-        'lua_ls',
-        -- 'tailwindcss-language-server',
-      }
+      -- local ensure_installed = {
+      --   'stylua',
+      --   'lua_ls',
+      --   -- 'tailwindcss-language-server',
+      -- }
 
       -- vim.list_extend(ensure_installed, servers_to_install)
       -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -190,17 +195,17 @@ return {
         end,
       })
 
-      require('lsp_lines').setup()
-      vim.diagnostic.config { virtual_text = true, virtual_lines = false }
-
-      vim.keymap.set('', '<leader>l', function()
-        local config = vim.diagnostic.config() or {}
-        if config.virtual_text then
-          vim.diagnostic.config { virtual_text = false, virtual_lines = true }
-        else
-          vim.diagnostic.config { virtual_text = true, virtual_lines = false }
-        end
-      end, { desc = 'Toggle lsp_lines' })
+      -- require('lsp_lines').setup()
+      -- vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+      --
+      -- vim.keymap.set('', '<leader>l', function()
+      --   local config = vim.diagnostic.config() or {}
+      --   if config.virtual_text then
+      --     vim.diagnostic.config { virtual_text = false, virtual_lines = true }
+      --   else
+      --     vim.diagnostic.config { virtual_text = true, virtual_lines = false }
+      --   end
+      -- end, { desc = 'Toggle lsp_lines' })
     end,
   },
 }
