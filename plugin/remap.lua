@@ -82,7 +82,7 @@ opt.scrolloff = 10
 -- set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Remap to "home"
--- set('n', '<leader>pv', vim.cmd.Ex)
+set('n', '<leader>pv', vim.cmd.Ex)
 
 -- Diagnostic keymaps
 set('n', '<leader>[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostics message' })

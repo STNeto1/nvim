@@ -3,6 +3,7 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {},
+  enabled = false,
   -- Optional dependencies
   dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
@@ -212,6 +213,6 @@ return {
       },
     }
 
-    vim.keymap.set("n", "pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    vim.keymap.set('n', 'pv', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
   end,
 }
