@@ -14,7 +14,7 @@ return { -- Collection of various small independent plugins/modules
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    require('mini.surround').setup {}
 
     -- Move any selection in any direction
     --
@@ -67,6 +67,8 @@ return { -- Collection of various small independent plugins/modules
     statusline.section_location = function()
       return '%2l:%-2v'
     end
+
+    require('mini.pairs').setup {}
 
     -- ... and there is more!
     --  Check out: https://github.com/echasnovski/mini.nvim
