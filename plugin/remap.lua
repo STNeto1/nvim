@@ -79,7 +79,7 @@ opt.scrolloff = 10
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
--- set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Remap to "home"
 set('n', '<leader>pv', vim.cmd.Ex)

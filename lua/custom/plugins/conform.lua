@@ -38,7 +38,7 @@ return { -- Autoformat
       rust = { 'rustfmt', lsp_format = 'fallback' },
       typescript = { 'biome' },
       typescriptreact = { 'biome' },
-      -- svelte = { 'biome' },
+      svelte = { 'biome' },
       javascript = { 'biome' },
       graphql = { 'biome' },
       graphqls = { 'biome' },
@@ -51,6 +51,7 @@ return { -- Autoformat
       latex = { 'latexindent' },
       ocaml = { 'ocamlformat' },
       terraform = { 'terraform_fmt' },
+      zig = { 'zigfmt' },
     },
   },
 }

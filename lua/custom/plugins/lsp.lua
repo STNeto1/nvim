@@ -16,9 +16,6 @@ return {
         'saghen/blink.cmp',
       },
       { 'Bilal2453/luvit-meta', lazy = true },
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       {
         'j-hui/fidget.nvim',
@@ -124,8 +121,6 @@ return {
           server_capabilities = { semanticTokensProvider = false },
         },
       }
-
-      require('mason').setup()
 
       for name, config in pairs(servers) do
         if config == true then
