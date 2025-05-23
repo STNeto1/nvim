@@ -13,10 +13,23 @@ return {
     lazy = false,
     priority = 1000,
     opts = {},
-    -- config = function()
-    --   vim.cmd.colorscheme 'tokyonight-storm'
-    --   vim.cmd.hi 'Comment gui=none'
-    -- end,
+    config = function()
+      require('tokyonight').setup {
+        -- use the night style
+        style = 'moon',
+        -- disable italic for functions
+        -- styles = {
+        --   functions = {},
+        -- },
+        -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+        -- on_colors = function(colors)
+        --   colors.hint = colors.orange
+        --   colors.error = '#ff0000'
+        -- end,
+      }
+      vim.cmd.colorscheme 'tokyonight-moon'
+      vim.cmd.hi 'Comment gui=none'
+    end,
   },
   {
     'rebelot/kanagawa.nvim',
@@ -60,34 +73,53 @@ return {
     priority = 1000,
     opts = {},
     config = function()
-      vim.o.background = 'dark' -- or "light" for light mode
+      -- vim.o.background = 'dark' -- or "light" for light mode
+      --
+      -- -- Default options:
+      -- require('gruvbox').setup {
+      --   terminal_colors = true, -- add neovim terminal colors
+      --   undercurl = true,
+      --   underline = true,
+      --   bold = true,
+      --   italic = {
+      --     strings = true,
+      --     emphasis = true,
+      --     comments = true,
+      --     operators = false,
+      --     folds = true,
+      --   },
+      --   strikethrough = true,
+      --   invert_selection = false,
+      --   invert_signs = false,
+      --   invert_tabline = false,
+      --   inverse = true, -- invert background for search, diffs, statuslines and errors
+      --   contrast = '', -- can be "hard", "soft" or empty string
+      --   palette_overrides = {},
+      --   overrides = {},
+      --   dim_inactive = false,
+      --   transparent_mode = false,
+      -- }
+      --
+      -- vim.cmd.colorscheme 'gruvbox'
+    end,
+  },
+  {
+    'datsfilipe/vesper.nvim',
+    config = function()
+      -- require('vesper').setup {
+      --   transparent = false, -- Boolean: Sets the background to transparent
+      --   italics = {
+      --     comments = true, -- Boolean: Italicizes comments
+      --     keywords = false, -- Boolean: Italicizes keywords
+      --     functions = false, -- Boolean: Italicizes functions
+      --     strings = false, -- Boolean: Italicizes strings
+      --     variables = false, -- Boolean: Italicizes variables
+      --   },
+      --   overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+      --   palette_overrides = {},
+      -- }
 
-      -- Default options:
-      require('gruvbox').setup {
-        terminal_colors = true, -- add neovim terminal colors
-        undercurl = true,
-        underline = true,
-        bold = true,
-        italic = {
-          strings = true,
-          emphasis = true,
-          comments = true,
-          operators = false,
-          folds = true,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = '', -- can be "hard", "soft" or empty string
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = false,
-      }
-
-      vim.cmd.colorscheme 'gruvbox'
+      -- vim.cmd.colorscheme 'vesper'
     end,
   },
 }
