@@ -85,8 +85,13 @@ set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 set('n', '<leader>pv', vim.cmd.Ex)
 
 -- Diagnostic keymaps
-set('n', '<leader>[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostics message' })
-set('n', '<leader>]d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostics message' })
+set('n', '<leader>[d', function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = 'Go to previous [D]iagnostics message' })
+
+set('n', '<leader>]d', function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = 'Go to next [D]iagnostics message' })
 set('n', '<leader>vd', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
 set('n', '<leader>t', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 set('n', '<leader>e', function()
