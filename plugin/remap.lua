@@ -114,3 +114,11 @@ set('n', '<leader>[q', vim.cmd.cp, { desc = 'Go to previous quickfix list item' 
 set('n', '<leader>]q', vim.cmd.cn, { desc = 'Go to next quickfix list item' })
 set('n', '<leader>[[', vim.cmd.cclose, { desc = 'Go to next quickfix list item' })
 set('n', '<leader>]]', vim.cmd.copen, { desc = 'Go to next quickfix list item' })
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'pt_br', 'en_us' }
+-- set('n', '<leader>ss', ':set spell!<CR>', { desc = 'Toggle spell check' })
+-- set('n', '<leader>sn', ']s', { desc = 'Next misspelled word' })
+-- set('n', '<leader>sp', '[s', { desc = 'Previous misspelled word' })
+set('n', '<leader>sa', 'zg', { desc = 'Add word to dictionary' })
+set('n', '<leader>s?', 'z=', { desc = 'Spelling suggestions' })
