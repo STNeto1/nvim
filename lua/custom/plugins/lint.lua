@@ -2,11 +2,13 @@ return {
   -- Linting
   'mfussenegger/nvim-lint',
   event = { 'BufReadPre', 'BufNewFile' },
+  enabled = false,
   config = function()
     local lint = require 'lint'
     lint.linters_by_ft = {
       markdown = { 'markdownlint' },
       -- go = { 'revive' },
+      -- typescript = { 'biomejs' },
     }
 
     -- Create autocommand which carries out the actual linting
