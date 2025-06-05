@@ -1,5 +1,4 @@
 return {
-  -- cmd = { 'lua-language-server' },
   filetypes = { 'go' },
   settings = {
     ['gopls'] = {
@@ -13,7 +12,6 @@ return {
         generate = true,
         run_govulncheck = true,
       },
-
       staticcheck = true,
       gofumpt = true,
       hints = {
