@@ -1,7 +1,32 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    {
+      'supermaven-inc/supermaven-nvim',
+      dependencies = {
+        {
+          'saghen/blink.compat',
+          version = '*',
+          opts = {
+            impersonate_nvim_cmp = true,
+            debug = true,
+          },
+        },
+      },
+      opts = {
+        disable_inline_completion = true,
+        disable_keymaps = true,
+        keymaps = {
+          accept_suggestion = nil,
+        },
+      },
+    },
+    {
+      'huijiro/blink-cmp-supermaven',
+    },
+  },
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -54,7 +79,14 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'supermaven', 'snippets', 'buffer' },
+      providers = {
+        supermaven = {
+          name = 'supermaven',
+          module = 'blink-cmp-supermaven',
+          async = true,
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
