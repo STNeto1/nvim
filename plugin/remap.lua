@@ -56,7 +56,8 @@ opt.more = false
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-opt.timeoutlen = 300
+-- opt.timeoutlen = 300
+opt.timeoutlen = 1000
 
 -- Configure how new splits should be opened
 opt.splitright = true
@@ -122,3 +123,37 @@ vim.opt.spelllang = { 'pt_br', 'en_us' }
 -- set('n', '<leader>sp', '[s', { desc = 'Previous misspelled word' })
 set('n', '<leader>sa', 'zg', { desc = 'Add word to dictionary' })
 set('n', '<leader>s?', 'z=', { desc = 'Spelling suggestions' })
+
+local function base64_encode_selection()
+  -- Pega as posições da seleção visual
+  local start_pos = vim.fn.getpos "'<"
+  local end_pos = vim.fn.getpos "'>"
+
+  -- Pega o texto selecionado
+  local lines = vim.fn.getline(start_pos[2], end_pos[2])
+  local selection
+
+  if #lines == 1 then
+    -- Seleção em uma linha só
+    selection = string.sub(lines[1], start_pos[3], end_pos[3])
+  else
+    -- Seleção em múltiplas linhas
+    lines[1] = string.sub(lines[1], start_pos[3])
+    lines[#lines] = string.sub(lines[#lines], 1, end_pos[3])
+    selection = table.concat(lines, '\n')
+  end
+
+  -- Codifica em base64
+  local encoded = vim.fn.system('base64 -w 0', selection):gsub('\n', '')
+
+  print(encoded)
+
+  -- Substitui a seleção
+  vim.cmd 'normal! gv'
+  vim.cmd('normal! c' .. encoded)
+end
+
+-- Mapeia a função
+vim.keymap.set('v', '<leader>64', base64_encode_selection, { desc = 'Encode selection to base64' })
+
+-- Z2VybWFubw==
