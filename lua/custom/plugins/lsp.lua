@@ -19,7 +19,7 @@ return {
       -- { dir = "~/plugins/ocaml.nvim" },
     },
     config = function()
-      for _, svr_name in ipairs { 'gopls', 'jsonls', 'luals', 'tsserver', 'yamlls', 'tailwindcss', 'biome' } do
+      for _, svr_name in ipairs { 'gopls', 'jsonls', 'luals', 'tsserver', 'yamlls', 'tailwindcss', 'biome', 'graphql' } do
         vim.lsp.enable(svr_name)
       end
 
