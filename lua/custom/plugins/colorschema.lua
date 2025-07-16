@@ -3,10 +3,10 @@ return {
     'rose-pine/neovim',
     lazy = false,
     priority = 1000,
-    -- config = function()
-    --   vim.cmd.colorscheme 'rose-pine'
-    --   vim.cmd.hi 'Comment gui=none'
-    -- end,
+    config = function()
+      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.hi 'Comment gui=none'
+    end,
   },
   {
     'folke/tokyonight.nvim',
@@ -100,7 +100,7 @@ return {
         transparent_mode = false,
       }
 
-      vim.cmd.colorscheme 'gruvbox'
+      -- vim.cmd.colorscheme 'gruvbox'
     end,
   },
   {
