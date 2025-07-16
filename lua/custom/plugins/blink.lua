@@ -73,7 +73,7 @@ return {
           },
         },
       },
-      documentation = { auto_show = false },
+      documentation = { auto_show = true },
     },
 
     -- Default list of enabled providers defined so that you can extend it
