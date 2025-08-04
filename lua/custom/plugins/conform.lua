@@ -36,6 +36,7 @@ return { -- Autoformat
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
       go = { 'goimports' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
+      astro = { 'biome' },
       typescript = { 'biome' },
       typescriptreact = { 'biome' },
       svelte = { 'biome' },
