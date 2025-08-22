@@ -52,6 +52,7 @@ return { -- Autoformat
       latex = { 'latexindent' },
       ocaml = { 'ocamlformat' },
       terraform = { 'terraform_fmt' },
+      hcl = { 'terraform_fmt' },
       zig = { 'zigfmt' },
     },
   },
