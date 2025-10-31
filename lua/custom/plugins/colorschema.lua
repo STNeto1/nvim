@@ -4,8 +4,8 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'rose-pine'
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
   {
@@ -27,8 +27,8 @@ return {
         --   colors.error = '#ff0000'
         -- end,
       }
-      -- vim.cmd.colorscheme 'tokyonight-moon'
-      -- vim.cmd.hi 'Comment gui=none'
+      vim.cmd.colorscheme 'tokyonight-moon'
+      vim.cmd.hi 'Comment gui=none'
     end,
   },
   {
