@@ -30,6 +30,7 @@ return {
         'graphql',
         'ocamllsp',
         'ruff',
+        'oxlint',
       } do
         vim.lsp.enable(svr_name)
 
