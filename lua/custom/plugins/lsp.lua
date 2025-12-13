@@ -21,22 +21,14 @@ return {
     config = function()
       for _, svr_name in ipairs {
         'gopls',
-        'jsonls',
-        'luals',
-        'tsserver',
-        'yamlls',
-        'tailwindcss',
+        'tsgo',
         'biome',
-        'graphql',
-        'ocamllsp',
-        'ruff',
-        'oxlint',
       } do
         vim.lsp.enable(svr_name)
 
-        vim.lsp.config(svr_name, {
-          capabilities = require('blink.cmp').get_lsp_capabilities(),
-        })
+        -- vim.lsp.config(svr_name, {
+        --   capabilities = require('blink.cmp').get_lsp_capabilities(),
+        -- })
       end
 
       vim.api.nvim_create_autocmd('LspAttach', {

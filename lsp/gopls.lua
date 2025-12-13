@@ -1,7 +1,9 @@
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/gopls.lua
 return {
-  filetypes = { 'go' },
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
   settings = {
-    ['gopls'] = {
+    gopls = {
       analyses = {
         unreachable = true,
         unusedparams = true,
