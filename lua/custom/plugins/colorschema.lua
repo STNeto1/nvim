@@ -27,8 +27,8 @@ return {
         --   colors.error = '#ff0000'
         -- end,
       }
-      vim.cmd.colorscheme 'tokyonight-moon'
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.colorscheme 'tokyonight-moon'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
   },
   {
@@ -119,7 +119,7 @@ return {
         palette_overrides = {},
       }
 
-      -- vim.cmd.colorscheme 'vesper'
+      vim.cmd.colorscheme 'vesper'
     end,
   },
 }

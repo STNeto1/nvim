@@ -22,7 +22,8 @@ return {
       for _, svr_name in ipairs {
         'gopls',
         'tsgo',
-        'biome',
+        'rust_analyzer',
+        'oxlint',
       } do
         vim.lsp.enable(svr_name)
 
