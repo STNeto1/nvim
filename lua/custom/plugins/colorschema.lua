@@ -100,7 +100,7 @@ return {
         transparent_mode = false,
       }
 
-      -- vim.cmd.colorscheme 'gruvbox'
+      vim.cmd.colorscheme 'gruvbox'
     end,
   },
   {
@@ -119,7 +119,7 @@ return {
         palette_overrides = {},
       }
 
-      vim.cmd.colorscheme 'vesper'
+      -- vim.cmd.colorscheme 'vesper'
     end,
   },
 }
