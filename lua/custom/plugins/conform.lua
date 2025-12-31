@@ -13,7 +13,7 @@ return { -- Autoformat
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     -- format_on_save = function(bufnr)
     --   local disable_filetypes = { c = true, cpp = true }
     --   local lsp_format_opt
@@ -27,6 +27,13 @@ return { -- Autoformat
     --     lsp_format = lsp_format_opt,
     --   }
     -- end,
+    formatters = {
+      local_oxfmt = {
+        command = 'oxfmt',
+        stdin = true,
+        args = { '--stdin-filepath', '$FILENAME' },
+      },
+    },
     formatters_by_ft = {
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
@@ -38,18 +45,13 @@ return { -- Autoformat
       rust = { 'rustfmt', lsp_format = 'fallback' },
       astro = { 'oxfmt' },
       typescript = { 'oxfmt' },
-      typescriptreact = { 'oxfmt' },
-      svelte = { 'oxfmt' },
-      javascript = { 'oxfmt' },
-      graphql = { 'oxfmt' },
-      graphqls = { 'oxfmt' },
+      typescriptreact = { 'local_oxfmt' },
       json = { 'oxfmt' },
       sql = { 'sleek' },
       toml = { 'taplo' },
       yaml = { 'yamlfmt' },
       elixir = { 'mix' },
       heex = { 'mix' },
-      latex = { 'latexindent' },
       ocaml = { 'ocamlformat' },
       terraform = { 'terraform_fmt' },
       hcl = { 'terraform_fmt' },
