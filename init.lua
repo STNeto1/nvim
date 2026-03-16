@@ -166,6 +166,8 @@ vim.pack.add({
 
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	"https://github.com/rafamadriz/friendly-snippets",
+
+	"https://github.com/echasnovski/mini.nvim",
 })
 
 --- === COLORSCHEME ===
@@ -366,3 +368,13 @@ require("blink.cmp").setup({
 -- === LAZYGIT ===
 vim.cmd("packadd lazygit.nvim")
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { buffer = bufnr, desc = "LSP: " .. "LazyGit" })
+
+-- === MINI ===
+vim.cmd("packadd mini.nvim")
+
+-- Better Around/Inside textobjects
+-- Examples:
+--  - va)  - [V]isually select [A]round [)]paren
+--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+--  - ci'  - [C]hange [I]nside [']quote
+require("mini.ai").setup({ n_lines = 500 })
