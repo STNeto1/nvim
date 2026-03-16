@@ -161,6 +161,8 @@ vim.pack.add({
 	"https://github.com/b0o/SchemaStore.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
+
+	"https://github.com/kdheepak/lazygit.nvim",
 })
 
 --- === COLORSCHEME ===
@@ -330,3 +332,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 	end,
 })
+
+-- === LAZYGIT ===
+vim.cmd("packadd lazygit.nvim")
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { buffer = bufnr, desc = "LSP: " .. "LazyGit" })
