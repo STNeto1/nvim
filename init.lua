@@ -163,6 +163,9 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim",
 
 	"https://github.com/kdheepak/lazygit.nvim",
+
+	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+	"https://github.com/rafamadriz/friendly-snippets",
 })
 
 --- === COLORSCHEME ===
@@ -300,9 +303,9 @@ for _, svr_name in ipairs({
 }) do
 	vim.lsp.enable(svr_name)
 
-	-- vim.lsp.config(svr_name, {
-	--   capabilities = require('blink.cmp').get_lsp_capabilities(),
-	-- })
+	vim.lsp.config(svr_name, {
+		capabilities = require("blink.cmp").get_lsp_capabilities(),
+	})
 end
 
 vim.cmd("packadd telescope.nvim")
@@ -331,6 +334,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 		map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 	end,
+})
+
+vim.cmd("packadd blink.cmp")
+require("blink.cmp").setup({
+	fuzzy = {
+		prebuilt_binaries = { download = true },
+		implementation = "lua",
+	},
+	appearance = {
+		nerd_font_variant = "mono",
+	},
+	completion = {
+		-- menu = { border = 'single' },
+		menu = {
+			draw = {
+				padding = { 0, 1 }, -- padding only on right side
+				components = {
+					kind_icon = {
+						text = function(ctx)
+							return " " .. ctx.kind_icon .. ctx.icon_gap .. " "
+						end,
+					},
+				},
+			},
+		},
+		documentation = { auto_show = true, treesitter_highlighting = true },
+	},
 })
 
 -- === LAZYGIT ===
