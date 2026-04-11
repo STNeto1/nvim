@@ -145,7 +145,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Plugins
 -- ======
 vim.pack.add({
-	"https://github.com/dmtrKovalenko/fff.nvim",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",
@@ -159,8 +158,10 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/folke/lazydev.nvim",
 	"https://github.com/b0o/SchemaStore.nvim",
+
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
+	{ src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
 	"https://github.com/kdheepak/lazygit.nvim",
 
@@ -168,6 +169,8 @@ vim.pack.add({
 	"https://github.com/rafamadriz/friendly-snippets",
 
 	"https://github.com/echasnovski/mini.nvim",
+
+	"https://github.com/lewis6991/gitsigns.nvim",
 })
 
 --- === COLORSCHEME ===
@@ -225,28 +228,6 @@ require("lualine").setup({
 	options = { theme = "monokai-pro" },
 })
 
---- === FFF ===
-require("fff").setup({
-	base_path = vim.fn.getcwd(),
-	prompt = "🪿 ",
-	title = "FFFiles",
-	max_results = 100,
-	max_threads = 4,
-	lazy_sync = true, -- set to false if you want file indexing to start on open
-	debug = {
-		enabled = true,
-		show_scores = true,
-	},
-})
-
-vim.keymap.set("n", "sf", function()
-	require("fff").find_files()
-end, { desc = "FFFind files" })
-
-vim.keymap.set("n", "sg", function()
-	require("fff").live_grep()
-end, { desc = "LiFFFe grep" })
-
 -- === TREESITTER ===
 vim.cmd("packadd nvim-treesitter")
 require("nvim-treesitter").setup({
@@ -274,9 +255,9 @@ require("conform").setup({
 		rust = { "rustfmt", lsp_format = "fallback" },
 		python = { "ruff" },
 		go = { "goimports" },
-		typescript = { "local_oxfmt" },
-		typescriptreact = { "local_oxfmt" },
-		json = { "local_oxfmt" },
+		typescript = { "oxfmt" },
+		typescriptreact = { "oxfmt" },
+		json = { "oxfmt" },
 		sql = { "sleek" },
 		toml = { "taplo" },
 		yaml = { "yamlfmt" },
@@ -311,6 +292,25 @@ for _, svr_name in ipairs({
 end
 
 vim.cmd("packadd telescope.nvim")
+require("telescope").setup({
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown(),
+		},
+	},
+})
+local builtin = require("telescope.builtin")
+-- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+-- vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+-- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+-- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+-- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+-- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+vim.keymap.set("n", "<leader><leader>", builtin.git_status, { desc = "[ ] Find existing buffers" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
@@ -378,3 +378,55 @@ vim.cmd("packadd mini.nvim")
 --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
 --  - ci'  - [C]hange [I]nside [']quote
 require("mini.ai").setup({ n_lines = 500 })
+
+-- === Gitsigns ===
+vim.cmd("packadd gitsigns.nvim")
+require("gitsigns").setup({
+	signs = {
+		add = { text = "┃" },
+		change = { text = "┃" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+		untracked = { text = "┆" },
+	},
+	signs_staged = {
+		add = { text = "┃" },
+		change = { text = "┃" },
+		delete = { text = "_" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "~" },
+		untracked = { text = "┆" },
+	},
+	signs_staged_enable = true,
+	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+	watch_gitdir = {
+		follow_files = true,
+	},
+	auto_attach = true,
+	attach_to_untracked = false,
+	current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+	current_line_blame_opts = {
+		virt_text = true,
+		virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+		delay = 1000,
+		ignore_whitespace = false,
+		virt_text_priority = 100,
+		use_focus = true,
+	},
+	current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+	sign_priority = 6,
+	update_debounce = 100,
+	status_formatter = nil, -- Use default
+	max_file_length = 40000, -- Disable if file is longer than this (in lines)
+	preview_config = {
+		-- Options passed to nvim_open_win
+		style = "minimal",
+		relative = "cursor",
+		row = 0,
+		col = 1,
+	},
+})
