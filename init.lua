@@ -283,6 +283,8 @@ for _, svr_name in ipairs({
 	"rust_analyzer",
 	"oxlint",
 	"stylua",
+	"ty",
+	"tailwindcss",
 }) do
 	vim.lsp.enable(svr_name)
 
