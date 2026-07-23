@@ -441,11 +441,26 @@ vim.cmd("packadd oil.nvim")
 require("oil").setup({
 	default_file_explorer = true,
 
+	columns = {
+		"icon",
+		"size",
+		{ "mtime", format = "%Y-%m-%d %H:%M" },
+	},
+
+	view_options = {
+		show_hidden = true,
+		natural_order = "fast",
+	},
+
 	-- Buffer-local options to use for oil buffers
 	buf_options = {
 		buflisted = false,
 		bufhidden = "hide",
 	},
+
+	delete_to_trash = true,
+	skip_confirm_for_simple_edits = true,
+	watch_for_changes = true,
 
 	-- Selecting a new/moved/renamed file or directory will prompt you to save changes first
 	prompt_save_on_select_new_entry = true,
