@@ -89,7 +89,8 @@ vim.g.maplocalleader = " " -- space as the leader
 
 vim.g.have_nerd_font = true -- nerd font support
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("n", "j", function()
 	return vim.v.count == 0 and "gj" or "j"
@@ -171,6 +172,8 @@ vim.pack.add({
 	"https://github.com/echasnovski/mini.nvim",
 
 	"https://github.com/lewis6991/gitsigns.nvim",
+
+	"https://github.com/stevearc/oil.nvim",
 })
 
 --- === COLORSCHEME ===
@@ -430,5 +433,30 @@ require("gitsigns").setup({
 		relative = "cursor",
 		row = 0,
 		col = 1,
+	},
+})
+
+-- === Oil ===
+vim.cmd("packadd oil.nvim")
+require("oil").setup({
+	default_file_explorer = true,
+
+	-- Buffer-local options to use for oil buffers
+	buf_options = {
+		buflisted = false,
+		bufhidden = "hide",
+	},
+
+	-- Selecting a new/moved/renamed file or directory will prompt you to save changes first
+	prompt_save_on_select_new_entry = true,
+
+	lsp_file_methods = {
+		-- Enable or disable LSP file operations
+		enabled = true,
+		-- Time to wait for LSP file operations to complete before skipping
+		timeout_ms = 1000,
+		-- Set to true to autosave buffers that are updated with LSP willRenameFiles
+		-- Set to "unmodified" to only save unmodified buffers
+		autosave_changes = false,
 	},
 })
